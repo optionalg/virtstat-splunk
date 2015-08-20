@@ -11,7 +11,7 @@ The data will be output in a JSON format.
 To install, run `git clone`.
 
 ```bash
-$ git clone https://git.rakuten-it.com/scm/openstack/virtstat-splunk.git
+$ git clone https://github.com/rakutentech/virtstat-splunk.git
 ```
 
 ## Usage
