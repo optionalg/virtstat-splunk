@@ -1,0 +1,30 @@
+[script://./bin/block_info.py]
+disabled = false
+interval = 300
+sourcetype = block_info
+index = virtstat
+
+[script://./bin/block_stats.py]
+disabled = false
+interval = 10
+sourcetype = block_stats
+index = virtstat
+
+[script://./bin/interface_stats.py]
+disabled = false
+interval = 10
+sourcetype = interface_stats
+index = virtstat
+
+[script://./bin/memory_stats.py]
+disabled = false
+interval = 10
+sourcetype = memory_stats
+index = virtstat
+
+[script://./bin/vcpus.py]
+disabled = false
+interval = 10
+sourcetype = vcpus
+index = virtstat
+
