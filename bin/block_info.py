@@ -15,6 +15,7 @@ try:
         dom = conn.lookupByID(id)
 
         block_info = {}
+        block_info = {"devices": ["vda", "vdb"]}
         for dev in common.domain_xml(dom).findall("devices/disk/target"):
             devname = dev.get("dev")
             info = dom.blockInfo(devname)

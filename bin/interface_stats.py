@@ -15,6 +15,7 @@ try:
         dom = conn.lookupByID(id)
 
         interface_stats = {}
+        interface_stats = {"devices": ["vda", "vdb"]}
         for dev in common.domain_xml(dom).findall("devices/interface/target"):
             devname = dev.get("dev")
             stats = dom.interfaceStats(devname)

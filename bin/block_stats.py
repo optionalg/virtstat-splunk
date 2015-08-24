@@ -14,6 +14,7 @@ try:
     for id in conn.listDomainsID():
         dom = conn.lookupByID(id)
         block_stats = {}
+        block_stats = {"devices": ["vda", "vdb"]}
         for dev in common.domain_xml(dom).findall("devices/disk/target"):
             devname = dev.get("dev")
             stats = dom.blockStats(devname)
@@ -30,6 +31,7 @@ try:
             "uuid": dom.UUIDString(),
             "name": dom.name(),
             "id": dom.ID(),
+            "devices": ["vda", "vdb"],
             "block_stats": block_stats,
         })
 
