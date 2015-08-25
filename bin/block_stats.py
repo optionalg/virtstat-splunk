@@ -36,5 +36,6 @@ try:
             ("block_stats", block_stats)
         ]))
 
+
 except Exception, e:
     print json.dumps({"timestamp": common.now(), "error": "%s" % e})
