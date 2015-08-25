@@ -3,6 +3,7 @@
 import common
 import libvirt
 import json
+from collections import OrderedDict # so that the timestamp is first entry
 
 # LOG = common.get_logger("interface_stats")
 
@@ -30,14 +31,14 @@ try:
                 "tx_errs": stats[6],
                 "tx_drop": stats[7]
             }
-            print json.dumps({
-                "timestamp": common.now(),
-                "nova": common.nova_metadata(dom),
-                "uuid": dom.UUIDString(),
-                "name": dom.name(),
-                "id": dom.ID(),
-                "interface_stats": interface_stats
-            })
+            print json.dumps(OrderedDict([
+                ("timestamp", common.now()),
+                ("nova", common.nova_metadata(dom)),
+                ("uuid", dom.UUIDString()),
+                ("name", dom.name()),
+                ("id", dom.ID()),
+                ("interface_stats", interface_stats)
+            ]))
 
 except Exception, e:
     print json.dumps({"timestamp": common.now(), "error": "%s" % e})
