@@ -32,8 +32,7 @@ try:
             "uuid": dom.UUIDString(),
             "name": dom.name(),
             "id": dom.ID(),
-            "devices": ["vda", "vdb"],
-            "block_stats": block_stats,
+            "block_stats": block_stats
         })
 
 except Exception, e:
