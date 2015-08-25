@@ -14,8 +14,10 @@ try:
     for id in conn.listDomainsID():
         dom = conn.lookupByID(id)
         block_stats = {}
+        block_stats = {"devices": []}
         for dev in common.domain_xml(dom).findall("devices/disk/target"):
             devname = dev.get("dev")
+            block_stats["devices"].append(devname)
             stats = dom.blockStats(devname)
             block_stats[devname] = {
                 "rd_req": stats[0],
@@ -30,7 +32,7 @@ try:
             "uuid": dom.UUIDString(),
             "name": dom.name(),
             "id": dom.ID(),
-            "block_stats": block_stats,
+            "block_stats": block_stats
         })
 
 except Exception, e:
