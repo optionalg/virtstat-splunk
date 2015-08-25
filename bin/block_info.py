@@ -15,9 +15,10 @@ try:
         dom = conn.lookupByID(id)
 
         block_info = {}
-        block_info = {"devices": ["vda", "vdb"]}
+        block_info = {"devices": []}
         for dev in common.domain_xml(dom).findall("devices/disk/target"):
             devname = dev.get("dev")
+            block_info["devices"].append(devname)
             info = dom.blockInfo(devname)
             block_info[devname] = {
                 # logical size in bytes of the image
