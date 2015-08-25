@@ -3,6 +3,7 @@
 import common
 import libvirt
 import json
+from collections import OrderedDict # so that the timestamp is first entry
 
 # LOG = common.get_logger("vcpus")
 
@@ -32,14 +33,14 @@ try:
                 "cpu": vcpu[3]        # real CPU number, or -1 if offline
             }
 
-        print json.dumps({
-            "timestamp": common.now(),
-            "nova": common.nova_metadata(dom),
-            "uuid": dom.UUIDString(),
-            "name": dom.name(),
-            "id": dom.ID(),
-            "vcpus": vcpus
-        })
+        print json.dumps(OrderedDict([
+            ("timestamp", common.now()),
+            ("nova", common.nova_metadata(dom)),
+            ("uuid", dom.UUIDString()),
+            ("name", dom.name()),
+            ("id", dom.ID()),
+            ("vcpus", vcpus)
+        ]))
 
 except Exception, e:
     print json.dumps({"timestamp": common.now(), "error": "%s" % e})
