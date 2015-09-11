@@ -17,11 +17,12 @@ try:
 
         interface_stats = {}
         interface_stats = {"devices": []}
-        for dev in common.domain_xml(dom).findall("devices/interface/target"):
-            devname = dev.get("dev")
-            interface_stats["devices"].append(devname)
+        for dev in common.domain_xml(dom).findall("devices/interface"):
+            macaddr = dev.find("mac").get("address")
+            devname = dev.find("target").get("dev")
+            interface_stats["devices"].append(macaddr)
             stats = dom.interfaceStats(devname)
-            interface_stats[devname] = {
+            interface_stats[macaddr] = {
                 "rx_bytes": stats[0],
                 "rx_packets": stats[1],
                 "rx_errs": stats[2],
